@@ -17,22 +17,23 @@ public class Library extends ChooseSong implements ILibrary {
      * Creates a sonList object that contains an ArrayList for Songs.
      */
     private ArrayList<Song> songList = new ArrayList<>();
-    
+
     /**
      * Creates a playlist object that contains an ArrayList for Songs.
      */
     protected ArrayList<Song> playlist = new ArrayList<>();
-    
+
     /**
-     * Creates a playsong object that contains the message from the ChooseSong 
+     * Creates a playsong object that contains the message from the ChooseSong
      * class.
      */
     static ChooseSong playsong = new ChooseSong();
 
     Scanner entry = new Scanner(System.in);
-    
-    /** 
+
+    /**
      * Display a menu, prompts for user input (int selection), and returns the input.
+     *
      * @return int
      */
     public int Menu() {
@@ -51,7 +52,7 @@ public class Library extends ChooseSong implements ILibrary {
 
     /**
      * Displays menu from showMenu(): Contains a switch,
-	 * executes case based on returned int from showMenu().
+     * executes case based on returned int from showMenu().
      * Creation of an exception handling in case the user enters an input different from int.
      */
     public void runMenu() {
@@ -67,15 +68,15 @@ public class Library extends ChooseSong implements ILibrary {
                     runMenu();
                     break;
                 case 3:
-                    playPlaylist();
+                   // playPlaylist();
                     runMenu();
                     break;
                 case 4:
-                    filterSong();
+                    //filterSong();
                     runMenu();
                     break;
                 case 5:
-                    order();
+                   // order();
                     runMenu();
                     break;
                 default:
@@ -85,7 +86,7 @@ public class Library extends ChooseSong implements ILibrary {
         } catch (InputMismatchException e) {
             System.out.println("\nDebes ingresar un número entero! Corre de nuevo el programa\n");
             entry.nextLine();
-        } 
+        }
     }
 
     /**
@@ -103,3 +104,42 @@ public class Library extends ChooseSong implements ILibrary {
         songList.add(new Song(9, "Du Hast", "1994-11-27", "4:20", "Rock", "./Imagenes/Rammstein.jpg", "Banda de rock Alemania"));
         songList.add(new Song(10, "Bad", "1993-08-19", "3:50", "Pop", "./Imagenes/MJ.jpg", "Rey del pop"));
     }
+
+    /**
+     * Adds songs from the library to the playlist.
+     */
+    public void addSongtoPlaylist() {
+        for (int i = 0; i < songList.size(); i++) {
+            System.out.println(songList.get(i).toString());
+        }
+        try {
+            System.out.print("\nEscribe el id de la canción que quieres agregar: ");
+            int id = entry.nextInt();
+            if (id <= 0 || id > 10) {
+                System.out.println("\nIngrese un Id válido!");
+            } else {
+                for (Song song : songList) {
+                    if (id == song.getId()) {
+                        playlist.add(song);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("\nDebes ingresar un número entero!");
+            entry.nextLine();
+        }
+    }
+
+    /**
+     * Displays playlist.
+     */
+    public void showPlaylist() {
+        if (playlist.isEmpty()) {
+            System.out.println("\nLa lista de reproducción está vacia!");
+        } else {
+            for (Song e : playlist) {
+                System.out.println(e.toString());
+            }
+        }
+    }
+}
