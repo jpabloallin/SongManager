@@ -35,3 +35,7 @@ El programa cuenta con una clase principal (Main), la cual deja una serie de ins
 • El usuario selecciona las opciones que se muestran en pantalla
 • En la consola del IDE aparecerán los resultados de la ejecución
 • Para salir de la ejecución el usuario deberá especificarlo en el sistema
+
+Java version "17.0.2" 
+@author Juan Pablo Allin Cañas
+@author Juan Esteban Patiño
