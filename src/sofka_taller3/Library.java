@@ -93,7 +93,7 @@ public class Library extends ChooseSong implements ILibrary {
      * Creation of Song library.
      */
     public void Library() {
-        songList.add(new Song(1, "Milk it", "2001-09-15", "4:10", "Rock", "../src/Imagenes/Nirvana.jpg", "Banda de rock de los 90'"));
+        songList.add(new Song(1, "Milk it", "2001-09-15", "4:10", "Rock", "./Imagenes/Nirvana.jpg", "Banda de rock de los 90'"));
         songList.add(new Song(2, "Pump it", "2005-08-07", "3:10", "Electrónica", "./Imagenes/BEP.jpg", "4 integrantes"));
         songList.add(new Song(3, "Velouria", "1991-01-03", "3:30", "Rock", "../src/Imagenes/Pixies.jpg", "Banda de rock"));
         songList.add(new Song(4, "Enjoy the Silence", "1994-04-29", "4:20", "Rock", "./Imagenes/DM.jpg", "Clásico"));
