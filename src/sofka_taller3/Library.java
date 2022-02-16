@@ -142,4 +142,57 @@ public class Library extends ChooseSong implements ILibrary {
             }
         }
     }
+
+    /**
+     * Filters songs from the library by their genre or year of release.
+     */
+    @Override
+    public void filterSong() {
+        String songGenre;
+        String songDate;
+        try {
+            System.out.println("Como desea filtrar\n" +
+                "1. Por Género\n" +
+                "2. Por Año de Lanzamiento\n");
+            int filter = entry.nextInt();
+            switch (filter){
+                case 1:
+                    System.out.println("\nIngrese un género\n");
+                    songGenre = entry.next();
+                    System.out.println("\nLas canciones del género " + songGenre +" son: ");
+                        for (Song song: songList) {
+                            if (songGenre.equalsIgnoreCase(song.getGenre())){
+                                System.out.println(song);
+                            }
+                    }
+                    break;
+                case 2:
+                    System.out.println("\nIngrese un año de lanzamiento\n");
+                    songDate = entry.next();
+                    System.out.println("\nLas canciones lanzadas en el año " + songDate + " son: " );
+                    for (Song song: songList) {
+                        String [] format = song.getDate().split("-");
+                        for (String element : format) {
+                            if (element.equals(songDate)){
+                                System.out.println(song);
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    System.out.println("\nNo es una selección válida!\n");
+                    runMenu();
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("\nDebes ingresar un número entero!");
+            entry.nextLine();
+        }
+    }
+
+    /**
+     * Displays message from ChooseSong class.
+     */
+    public static void playPlaylist() {
+        System.out.println(playsong.playSong());
+    }
 }
