@@ -68,15 +68,15 @@ public class Library extends ChooseSong implements ILibrary {
                     runMenu();
                     break;
                 case 3:
-                   // playPlaylist();
+                    playPlaylist();
                     runMenu();
                     break;
                 case 4:
-                    //filterSong();
+                    filterSong();
                     runMenu();
                     break;
                 case 5:
-                   // order();
+                    order();
                     runMenu();
                     break;
                 default:
@@ -195,4 +195,89 @@ public class Library extends ChooseSong implements ILibrary {
     public static void playPlaylist() {
         System.out.println(playsong.playSong());
     }
+
+    /**
+     * Orders songs from the library by their duration or release date,
+     * in ascending, descending or default order.
+     */
+    public void order() {
+        int date;
+        int form;
+        try {
+            Collections.sort(songList, new Ordering());
+            System.out.println("Como desea ordenar \n" +
+                    "1- Por Duracion\n" +
+                    "2- Por fecha de Lanzamiento\n");
+            date = entry.nextInt();
+            if (date == 1) {
+                try {
+                    System.out.println("\nSeleccione el orden \n" +
+                            "1- Ascendente \n" +
+                            "2- Descendente\n" +
+                            "3- Normal\n");
+                    form = entry.nextInt();
+                    if (form == 1) {
+                        for (Song orderSong : songList) {
+                            System.out.println(orderSong);
+                        }
+                    }
+                    else if (form ==2) {
+                        new Ordering();
+                        Collections.reverse(songList);
+                        for (Song orderSong : songList) {
+                            System.out.println(orderSong);
+                        }
+                    }
+                    else {
+                        Collections.sort(songList, new Ordering().id);
+                        for (int i = 0; i < songList.size(); i++) {
+                            System.out.println(songList.get(i).toString());
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("\nDebes ingresar un número entero!");
+                    entry.nextLine();
+                }
+            }
+            else if (date == 2) {
+                try {
+                    Collections.sort(songList,new Ordering().date);
+
+                    System.out.println("\nSeleccione el orden: \n" +
+                            "1- Ascendente \n" +
+                            "2- Descendente\n" +
+                            "3- Normal\n");
+                    form = entry.nextInt();
+                    if (form == 1) {
+                        for (Song orderSong : songList) {
+                            System.out.println(orderSong);
+                        }
+                    }
+                    else if (form == 2) {
+                        new Ordering();
+                        Collections.reverse(songList);
+                        for (Song orderSong : songList) {
+                            System.out.println(orderSong);
+                        }
+                    }
+                    else {
+                        Collections.sort(songList, new Ordering().id);
+                        for (Song orderSong : songList) {
+                            System.out.println(orderSong);
+                        }
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("\nDebes ingresar un número entero!");
+                    entry.nextLine();
+                }
+            }
+            else {
+                System.out.println("Opción no válida!");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("\nDebes ingresar un número entero!");
+            entry.nextLine();
+        }
+    }
 }
+
